@@ -1,21 +1,21 @@
 struct Culc {
 
-    vector<int> factorial;
-    int p;
+    vector<long long> factorial;
+    long long p;
 
     //階乗
-    Culc(int N, int p_) {
-        int ans = 1;
+    Culc(long long N, long long p_) {
+        long long ans = 1;
         p=p_;
         factorial.push_back(ans);
-        for (int i = 1; i <= N; i++) {
+        for (long long i = 1; i <= N; i++) {
             ans = ans * i % p;
             factorial.push_back(ans);
         }
     }
 
-    int extgcd(int a, int b, int &x, int &y) {
-        int g = a;
+    long long extgcd(long long a, long long b, long long &x, long long &y) {
+        long long g = a;
         if (b) {
             g = extgcd(b, a % b, y, x);
             y -= x * (a / b);
@@ -26,23 +26,23 @@ struct Culc {
         return g;
     }
 
-    int gcd(int a, int b) {
+    long long gcd(long long a, long long b) {
         return b == 0 ? a : gcd(b, a % b);
     }
 
-    int lcm(int a, int b) {
+    long long lcm(long long a, long long b) {
         return a * b / gcd(a, b);
     }
 
-    int inverse(int a, int p) {
-        int x, y;
+    long long inverse(long long a, long long p) {
+        long long x, y;
         extgcd(a, p, x, y);
         return ((x % p) + p) % p;
     }
 
 //nCk mod p
 //
-    int combination(int n, int k, int p) {
+    long long combination(long long n, long long k, long long p) {
         //set_factを呼んでから
         return factorial[n] * (inverse(factorial[k] * factorial[n - k] % p, p)) % p;
     }
