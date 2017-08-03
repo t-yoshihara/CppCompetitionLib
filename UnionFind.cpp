@@ -15,7 +15,7 @@ struct UnionFind{
         if(x==y)return;
         if(parent[y]<parent[x])swap(x,y);
         parent[x]+=parent[y];
-        parent[y]=parent[x];
+        parent[y]=x;
     }
 
     bool same(int x,int y){
