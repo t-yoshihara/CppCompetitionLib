@@ -19,7 +19,7 @@ struct SegmentTree{
         }
         lazy[k]=0;
     }
-
+    
     void add(int a,int b,int x,int k,int l,int r){
         eval(k,l,r);
 
@@ -34,6 +34,7 @@ struct SegmentTree{
         data[k]=(data[2*k+1]+data[2*k+2]);///合計なので子ノードの和
     }
 
+    //[a,b)
     void add(int a,int b,int x){
         add(a,b,x,0,0,n);
     }
@@ -47,6 +48,7 @@ struct SegmentTree{
         return (getSum(a,b,2*k+1,l,(r+l)/2) + getSum(a,b,2*k+2,(r+l)/2,r));///合計なので子ノードの和
     }
 
+    //[a,b)
     int getSum(int a,int b){
         return getSum(a,b,0,0,n);
     }
