@@ -42,7 +42,7 @@ struct Culc {
 
 //nCk mod p
 //
-    long long combination(long long n, long long k, long long p) {
+    long long combination(long long n, long long k) {
         //set_factを呼んでから
         return factorial[n] * (inverse(factorial[k] * factorial[n - k] % p, p)) % p;
     }
