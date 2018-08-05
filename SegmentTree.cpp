@@ -31,8 +31,8 @@ struct SegmentTree{
     }
 
     int getSum(int a,int b,int k=0,int l=0,int r=n){
-        if(r<=a||l>=b)return 0;
-        if(r>=a&&l<=b)return data[k];
+        if(r<=a||b<=l)return 0;
+        if(a<=l&&r<=b)return data[k];
         return getSum(a,b,2*k+1,l,(l+r)/2) + getSum(a,b,2*k+2,(l+r)/2,r);
     }
 
@@ -60,8 +60,8 @@ struct SegmentTree{
     }
 
     int getMax(int a,int b,int k=0,int l=0,int r=n){
-        if(r<=a||l>=b)return INT_MIN;
-        if(r>=a&&l<=b)return data[k];
+        if(r<=a||b<=l)return INT_MIN;
+        if(a<=l&&r<=b)return data[k];
         return max(getMax(a,b,2*k+1,l,(l+r)/2), getSum(a,b,2*k+2,(l+r)/2,r));
     }
 };
@@ -93,8 +93,8 @@ struct SegmentTree{
     }
 
     int getMax(int a,int b,int k=0,int l=0,int r=n){
-        if(r<=a||l>=b)return INT_MIN;
-        if(r>=a&&l<=b)return segDat[k]+segAdd[k];
+        if(r<=a||b<=l)return INT_MIN;
+        if(a<=l&&r<=b)return segDat[k]+segAdd[k];
         return max(getMax(a,b,2*k+1,l,(l+r)/2), getSum(a,b,2*k+2,(l+r)/2,r)) + segAdd[k];
     }
 };
